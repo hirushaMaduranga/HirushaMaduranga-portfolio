@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PointerDotField } from "@/components/effects/pointer-dot-field";
+import { InteractiveParticleField } from "@/components/effects/interactive-particle-field";
 
 export function Hero() {
   return (
@@ -8,8 +8,8 @@ export function Hero() {
       aria-label="Introduction"
       className="relative w-full py-24 sm:py-36 lg:py-44 overflow-hidden border-b border-[#111111]/20"
     >
-      {/* Interactive Dot Field Canvas */}
-      <PointerDotField />
+      {/* Subtle Interactive Particle Field Background */}
+      <InteractiveParticleField />
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10 w-full">
         {/* Editorial Subheader / Identifier */}
