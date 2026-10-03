@@ -10,8 +10,7 @@ interface Particle {
   vx: number;
   vy: number;
   radius: number;
-  color: string;
-  alpha: number;
+  baseAlpha: number;
   idlePhaseX: number;
   idlePhaseY: number;
   idleSpeedX: number;
@@ -65,50 +64,35 @@ export function InteractiveParticleField() {
     };
     reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
 
-    // Monochrome color variants in light theme
-    const colorTiers = [
-      { rgb: "17, 17, 17", minAlpha: 0.18, maxAlpha: 0.35, weight: 0.4 }, // Low-opacity grey
-      { rgb: "60, 60, 60", minAlpha: 0.3, maxAlpha: 0.55, weight: 0.35 }, // Dark grey
-      { rgb: "17, 17, 17", minAlpha: 0.6, maxAlpha: 0.85, weight: 0.25 }, // Near black
-    ];
-
-    const pickColor = () => {
-      const rand = Math.random();
-      let cumulative = 0;
-      for (const tier of colorTiers) {
-        cumulative += tier.weight;
-        if (rand <= cumulative) {
-          const alpha =
-            tier.minAlpha + Math.random() * (tier.maxAlpha - tier.minAlpha);
-          return { color: tier.rgb, alpha };
-        }
-      }
-      return { color: "17, 17, 17", alpha: 0.25 };
-    };
-
     const setupParticles = (width: number, height: number) => {
       particles = [];
 
       // Determine count based on screen size
       let count = 280;
       if (width < 640) {
-        count = 75; // Light density for mobile
+        count = 70; // Light density for mobile
       } else if (width < 1024) {
-        count = 160; // Medium density for tablets
+        count = 150; // Medium density for tablets
       }
 
       for (let i = 0; i < count; i++) {
-        // Biased distribution: concentrate around lower-right area of the Hero
-        // Uses power distribution to cluster toward the right (x > 0.35) and bottom (y > 0.3)
+        // Biased distribution: concentrate around lower half and right side areas of the Hero
         const rx = Math.pow(Math.random(), 0.65); // Bias toward 1 (right)
         const ry = Math.pow(Math.random(), 0.7); // Bias toward 1 (bottom)
 
-        // Spread mainly within 30% to 100% of width, and 25% to 100% of height
-        const baseX = width * (0.28 + 0.72 * rx) + (Math.random() - 0.5) * 40;
-        const baseY = height * (0.25 + 0.75 * ry) + (Math.random() - 0.5) * 40;
+        const baseX = width * (0.3 + 0.7 * rx) + (Math.random() - 0.5) * 40;
+        const baseY = height * (0.3 + 0.7 * ry) + (Math.random() - 0.5) * 40;
 
-        const { color, alpha } = pickColor();
-        const radius = 0.9 + Math.random() * 1.3; // Tiny dots: 0.9px to 2.2px
+        // Particle opacities for dark theme:
+        // Distant: 0.05 to 0.08, Normal: 0.15 to 0.20
+        const isDistant = Math.random() < 0.45;
+        const baseAlpha = isDistant
+          ? 0.05 + Math.random() * 0.03 // 0.05 - 0.08
+          : 0.15 + Math.random() * 0.05; // 0.15 - 0.20
+
+        const radius = isDistant
+          ? 0.8 + Math.random() * 0.6 // Tiny distant dots
+          : 1.1 + Math.random() * 0.9; // Normal dots
 
         particles.push({
           baseX,
@@ -118,8 +102,7 @@ export function InteractiveParticleField() {
           vx: 0,
           vy: 0,
           radius,
-          color,
-          alpha,
+          baseAlpha,
           idlePhaseX: Math.random() * Math.PI * 2,
           idlePhaseY: Math.random() * Math.PI * 2,
           idleSpeedX: 0.0008 + Math.random() * 0.0012,
@@ -158,7 +141,7 @@ export function InteractiveParticleField() {
         const p = particles[i];
         ctx.beginPath();
         ctx.arc(p.baseX, p.baseY, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.baseAlpha})`;
         ctx.fill();
       }
     };
@@ -172,7 +155,7 @@ export function InteractiveParticleField() {
 
       time += 1;
 
-      const repelRadius = 125;
+      const repelRadius = 120;
       const repelRadiusSq = repelRadius * repelRadius;
       const spring = 0.045; // Gentle return easing
       const damping = 0.85; // Natural smooth deceleration
@@ -196,7 +179,7 @@ export function InteractiveParticleField() {
             const dist = Math.sqrt(distSq);
             // Non-linear falloff: closer particles move away with higher response
             const factor = Math.pow(1 - dist / repelRadius, 1.6);
-            const force = factor * 4.8;
+            const force = factor * 4.6;
             p.vx += (dx / dist) * force;
             p.vy += (dy / dist) * force;
           }
@@ -216,18 +199,18 @@ export function InteractiveParticleField() {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Calculate dynamic alpha slightly brightening upon proximity
+        // Calculate dynamic alpha brightening near pointer up to ~0.60
         const displacement = Math.sqrt(
           (p.x - idleX) * (p.x - idleX) + (p.y - idleY) * (p.y - idleY)
         );
         const dynamicAlpha = Math.min(
-          p.alpha + (displacement / 25) * 0.25,
-          0.9
+          p.baseAlpha + (displacement / 24) * 0.42,
+          0.6
         );
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color}, ${dynamicAlpha})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${dynamicAlpha})`;
         ctx.fill();
       }
 
@@ -283,7 +266,10 @@ export function InteractiveParticleField() {
     return () => {
       if (animId) cancelAnimationFrame(animId);
       resizeObserver.disconnect();
-      reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
+      reducedMotionQuery.removeEventListener(
+        "change",
+        handleReducedMotionChange
+      );
       if (!isTouchDevice) {
         window.removeEventListener("pointermove", handlePointerMove);
         document.removeEventListener("pointerleave", handlePointerLeave);
