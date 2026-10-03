@@ -22,8 +22,7 @@ export function Hero() {
           </p>
 
           <p className="text-base sm:text-lg text-[#9A9A9A] leading-relaxed max-w-2xl pt-2">
-            I build modern, responsive, and user-focused web applications using
-            frontend and backend technologies.
+            I build modern, responsive, and user-focused web applications.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
