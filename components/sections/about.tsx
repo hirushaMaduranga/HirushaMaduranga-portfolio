@@ -6,19 +6,19 @@ interface TechGroup {
 const techStack: TechGroup[] = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5 / CSS3"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "FastAPI"],
+    items: ["Node.js", "Express", "FastAPI", "RESTful APIs", "Authentication"],
   },
   {
     category: "Database",
-    items: ["PostgreSQL", "MongoDB", "MySQL"],
+    items: ["PostgreSQL", "MongoDB", "MySQL", "Prisma ORM", "Schema Design"],
   },
   {
     category: "Tools",
-    items: ["Git", "GitHub", "Docker"],
+    items: ["Git & GitHub", "Docker", "VS Code", "Postman", "pnpm / npm"],
   },
 ];
 
@@ -27,65 +27,96 @@ export function About() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="w-full py-20 sm:py-28 border-t border-[#262626]"
+      className="w-full py-24 sm:py-36 border-b border-[#111111]/20"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full space-y-16">
-        {/* About Me Story / Bio */}
-        <div className="space-y-6 max-w-3xl">
-          <h2
-            id="about-heading"
-            className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F5F2]"
-          >
-            About Me
-          </h2>
-
-          <div className="space-y-4 text-base sm:text-lg text-[#9A9A9A] leading-relaxed">
-            <p>
-              I am a Full Stack Developer interested in building modern,
-              responsive, and user-focused web applications. I enjoy creating
-              clean interfaces and robust backend services that solve everyday
-              problems.
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 w-full space-y-16 sm:space-y-24">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#111111]/20">
+          <div className="space-y-3">
+            <p className="font-mono text-xs uppercase tracking-widest text-[#F0442C]">
+              03 &mdash; ABOUT
             </p>
-            <p>
-              This section is designed to be easily editable. A personal photo or
-              expanded biography can be added here as the portfolio evolves.
-            </p>
+            <h2
+              id="about-heading"
+              className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]"
+            >
+              Background &amp; Stack
+            </h2>
           </div>
+          <p className="font-mono text-xs uppercase tracking-wider text-[#646464] max-w-sm">
+            Core philosophies, software engineering background, and technical toolkit.
+          </p>
         </div>
 
-        {/* Tech Stack inside About */}
-        <div className="space-y-8 pt-6 border-t border-[#262626]">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#F5F5F2]">
-              Tech Stack
-            </h3>
-            <p className="text-sm text-[#9A9A9A] mt-1">
-              Core technologies and tools I work with across the stack.
-            </p>
+        {/* Editorial Split Layout (Left: About Text & Image Slot, Right: Tech Stack) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: About Me */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#111111]">
+                About Me
+              </h3>
+              <p className="text-base sm:text-lg text-[#646464] leading-relaxed">
+                I am a Full Stack Developer interested in building modern,
+                responsive, and scalable web applications across frontend and backend
+                systems.
+              </p>
+              <p className="text-base sm:text-lg text-[#646464] leading-relaxed">
+                I enjoy structuring maintainable architectures, optimizing data flows,
+                and creating user-focused interfaces that feel effortless to navigate.
+              </p>
+            </div>
+
+            {/* Profile Photo Placeholder Slot */}
+            <div className="w-full aspect-[4/3] border border-[#111111]/20 bg-[#ECEAE4] flex flex-col items-center justify-center p-6 text-center">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#646464]">
+                [ Portrait / Image Placeholder ]
+              </span>
+              <span className="font-mono text-[10px] text-[#646464]/80 mt-2">
+                Personal portrait will be placed here
+              </span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {techStack.map((group) => (
-              <div
-                key={group.category}
-                className="border border-[#262626] rounded-lg p-6 bg-[#0A0A0A] space-y-4"
-              >
-                <h4 className="text-base font-medium text-[#F5F5F2] border-b border-[#262626] pb-3">
-                  {group.category}
-                </h4>
-                <ul className="space-y-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="text-sm text-[#9A9A9A] flex items-center gap-2"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#262626]" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Right Column: Tech Stack */}
+          <div className="lg:col-span-7 space-y-8 lg:border-l lg:border-[#111111]/20 lg:pl-16">
+            <div className="space-y-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#111111]">
+                Tech Stack
+              </h3>
+              <p className="font-mono text-xs uppercase tracking-wider text-[#646464]">
+                Categorized technical competencies &mdash; text-based spec
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
+              {techStack.map((group, idx) => (
+                <div
+                  key={group.category}
+                  className="border-t border-[#111111]/20 pt-4 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-mono text-xs uppercase tracking-widest text-[#F0442C] font-semibold">
+                      {group.category}
+                    </h4>
+                    <span className="font-mono text-[10px] text-[#646464]">
+                      0{idx + 1}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="text-sm sm:text-base text-[#111111] flex items-center gap-2"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#111111]/30" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
