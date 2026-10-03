@@ -1,43 +1,57 @@
 import Link from "next/link";
+import { PointerDotField } from "@/components/effects/pointer-dot-field";
 
 export function Hero() {
   return (
     <section
       id="home"
       aria-label="Introduction"
-      className="w-full py-24 sm:py-32 lg:py-40 flex flex-col justify-center"
+      className="relative w-full py-24 sm:py-36 lg:py-44 overflow-hidden border-b border-[#111111]/20"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
-        <div className="max-w-3xl space-y-6">
-          <p className="text-sm sm:text-base font-medium text-[#9A9A9A] tracking-wide">
-            Hello, I&apos;m
+      {/* Interactive Dot Field Canvas */}
+      <PointerDotField />
+
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10 w-full">
+        {/* Editorial Subheader / Identifier */}
+        <div className="flex items-center gap-3 mb-8 sm:mb-12">
+          <span className="w-6 h-px bg-[#F0442C]" aria-hidden="true" />
+          <p className="font-mono text-xs uppercase tracking-widest text-[#646464]">
+            Hirusha Maduranga &mdash; Full Stack Developer
+          </p>
+        </div>
+
+        {/* Large Editorial Headline */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#111111] leading-[1.08] max-w-5xl">
+          <span className="text-[#F0442C]">Full Stack development</span> for
+          modern digital experiences.
+        </h1>
+
+        {/* Editorial Content & Actions Split Layout */}
+        <div className="mt-14 sm:mt-20 pt-8 sm:pt-10 border-t border-[#111111]/20 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+          <p className="text-base sm:text-lg lg:text-xl text-[#646464] leading-relaxed max-w-xl">
+            I design and build modern, responsive, and scalable web applications
+            across frontend and backend systems.
           </p>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#F5F5F2]">
-            Hirusha Maduranga
-          </h1>
-
-          <p className="text-xl sm:text-2xl font-medium text-[#9A9A9A]">
-            Full Stack Developer
-          </p>
-
-          <p className="text-base sm:text-lg text-[#9A9A9A] leading-relaxed max-w-2xl pt-2">
-            I build modern, responsive, and user-focused web applications.
-          </p>
-
-          <div className="flex flex-wrap gap-4 pt-4">
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 shrink-0">
             <Link
               href="#projects"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-md bg-[#F5F5F2] text-[#0A0A0A] hover:bg-transparent hover:text-[#F5F5F2] border border-[#F5F5F2] transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#111111] px-5 py-3 border border-[#111111]/20 hover:border-[#111111] hover:text-[#F0442C] transition-colors"
             >
-              View Projects
+              View Projects &darr;
             </Link>
 
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-md bg-transparent text-[#F5F5F2] hover:border-[#9A9A9A] border border-[#262626] transition-colors"
+              className="group inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-[#111111] hover:text-[#F0442C] transition-colors py-3"
             >
-              Contact Me
+              <span>GET IN TOUCH</span>
+              <span
+                className="inline-block transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#F0442C]"
+                aria-hidden="true"
+              >
+                &nearr;
+              </span>
             </Link>
           </div>
         </div>
