@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #f5f5f2;
-  --muted: #9a9a9a;
-  --border: #262626;
+  --background: #f5f4f0;
+  --foreground: #111111;
+  --muted: #646464;
+  --border: rgba(17, 17, 17, 0.2);
+  --accent: #f0442c;
+  --status: #22b455;
 }
 
 @theme inline {
@@ -12,6 +14,8 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-status: var(--status);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -23,7 +27,27 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
 }
 
+/* Hairline border utility */
+.hairline-b {
+  border-bottom: 1px solid var(--border);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border);
+}
+
+.hairline {
+  border: 1px solid var(--border);
+}
