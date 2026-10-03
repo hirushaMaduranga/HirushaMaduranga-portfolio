@@ -1,29 +1,29 @@
 interface ExperienceItem {
-  role: string;
-  organization: string;
   period: string;
+  role: string;
+  company: string;
   description: string;
 }
 
 const experiences: ExperienceItem[] = [
   {
-    role: "Full Stack Developer (Placeholder)",
-    organization: "Company / Organization Name",
-    period: "YYYY — Present",
+    period: "Year — Present",
+    role: "Role Title (Placeholder)",
+    company: "Company Name (Placeholder)",
     description:
       "Placeholder description of engineering responsibilities, architectural decisions, and key features delivered across modern web technologies.",
   },
   {
-    role: "Frontend Developer (Placeholder)",
-    organization: "Company / Organization Name",
-    period: "YYYY — YYYY",
+    period: "Year — Year",
+    role: "Role Title (Placeholder)",
+    company: "Company Name (Placeholder)",
     description:
       "Placeholder description of UI engineering, component development, user experience improvements, and performance optimizations.",
   },
   {
-    role: "Software Engineering Intern (Placeholder)",
-    organization: "Company / Organization Name",
-    period: "YYYY — YYYY",
+    period: "Year — Year",
+    role: "Role Title (Placeholder)",
+    company: "Company Name (Placeholder)",
     description:
       "Placeholder description of foundational engineering tasks, testing, bug fixes, and collaboration with cross-functional development teams.",
   },
@@ -46,7 +46,7 @@ export function Experience() {
               Experience
             </h2>
             <p className="text-base text-[#9A9A9A] mt-2">
-              Professional history and engineering background. Placeholder items to be updated.
+              Professional history and engineering background. Real details will be added later.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ export function Experience() {
                     <h3 className="text-lg font-medium text-[#F5F5F2]">
                       {exp.role}
                     </h3>
-                    <p className="text-sm text-[#9A9A9A]">{exp.organization}</p>
+                    <p className="text-sm text-[#9A9A9A]">{exp.company}</p>
                   </div>
                   <span className="text-xs font-mono text-[#9A9A9A] uppercase tracking-wider">
                     {exp.period}
