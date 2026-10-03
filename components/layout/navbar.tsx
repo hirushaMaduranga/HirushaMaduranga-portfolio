@@ -15,25 +15,25 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#F5F4F0] border-b border-[#111111]/20">
+    <header className="sticky top-0 z-50 w-full bg-[#0B0B0C]/90 backdrop-blur-md border-b border-white/10">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-18 flex items-center justify-between">
         {/* Brand / Logo */}
         <div className="flex items-baseline gap-6 sm:gap-8">
           <Link
             href="#home"
-            className="font-mono text-lg sm:text-xl font-bold tracking-widest text-[#111111] hover:text-[#F0442C] transition-colors"
+            className="font-mono text-lg sm:text-xl font-bold tracking-widest text-[#F5F5F5] hover:text-[#A1A1A6] transition-colors"
           >
             HIRUSHA
           </Link>
 
           {/* Desktop Editorial Metadata */}
-          <div className="hidden lg:flex items-center gap-6 pl-6 border-l border-[#111111]/20">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[#646464]">
+          <div className="hidden lg:flex items-center gap-6 pl-6 border-l border-white/10">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#6F7075]">
               PORTFOLIO &apos;26
             </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#111111]">
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#A1A1A6]">
               <span
-                className="w-2 h-2 rounded-full bg-[#22B455] shrink-0"
+                className="w-2 h-2 rounded-full bg-[#75E89A] shrink-0"
                 aria-hidden="true"
               />
               OPEN TO OPPORTUNITIES
@@ -50,7 +50,7 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="font-mono text-xs uppercase tracking-wider text-[#646464] hover:text-[#111111] transition-colors relative py-1"
+              className="font-mono text-xs uppercase tracking-wider text-[#A1A1A6] hover:text-[#F5F5F5] transition-colors relative py-1"
             >
               {link.name}
             </Link>
@@ -59,16 +59,16 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-4 md:hidden">
-          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#111111]">
+          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-[#A1A1A6]">
             <span
-              className="w-1.5 h-1.5 rounded-full bg-[#22B455] shrink-0"
+              className="w-1.5 h-1.5 rounded-full bg-[#75E89A] shrink-0"
               aria-hidden="true"
             />
             AVAILABLE
           </span>
           <button
             type="button"
-            className="font-mono text-xs uppercase tracking-wider text-[#111111] px-3 py-1.5 border border-[#111111]/30 hover:border-[#111111] transition-colors focus:outline-none"
+            className="font-mono text-xs uppercase tracking-wider text-[#F5F5F5] px-3 py-1.5 border border-white/15 hover:border-white/30 transition-colors focus:outline-none"
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -83,16 +83,16 @@ export function Navbar() {
       {isOpen && (
         <nav
           id="mobile-navigation"
-          className="md:hidden border-t border-[#111111]/20 bg-[#F5F4F0] px-6 py-6 space-y-4"
+          className="md:hidden border-t border-white/10 bg-[#0B0B0C] px-6 py-6 space-y-4"
           aria-label="Mobile Navigation"
         >
-          <div className="flex items-center justify-between pb-3 border-b border-[#111111]/10">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[#646464]">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#6F7075]">
               PORTFOLIO &apos;26
             </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#111111]">
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#A1A1A6]">
               <span
-                className="w-2 h-2 rounded-full bg-[#22B455]"
+                className="w-2 h-2 rounded-full bg-[#75E89A]"
                 aria-hidden="true"
               />
               OPEN TO OPPORTUNITIES
@@ -104,7 +104,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block font-mono text-sm uppercase tracking-wider text-[#646464] hover:text-[#111111] py-1.5 transition-colors"
+                className="block font-mono text-sm uppercase tracking-wider text-[#A1A1A6] hover:text-[#F5F5F5] py-1.5 transition-colors"
               >
                 {link.name}
               </Link>
