@@ -1,26 +1,26 @@
 import Link from "next/link";
 
-interface ContactLink {
+interface ContactItem {
   label: string;
   href: string;
-  detail: string;
+  description: string;
 }
 
-const contactLinks: ContactLink[] = [
+const contactItems: ContactItem[] = [
   {
     label: "Email",
     href: "#",
-    detail: "placeholder@example.com",
+    description: "Send an email (Placeholder)",
   },
   {
     label: "GitHub",
     href: "#",
-    detail: "github.com/placeholder",
+    description: "View profile (Placeholder)",
   },
   {
     label: "LinkedIn",
     href: "#",
-    detail: "linkedin.com/in/placeholder",
+    description: "Connect on LinkedIn (Placeholder)",
   },
 ];
 
@@ -46,7 +46,7 @@ export function Contact() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            {contactLinks.map((item) => (
+            {contactItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
@@ -55,8 +55,8 @@ export function Contact() {
                 <span className="text-sm font-medium text-[#F5F5F2] block">
                   {item.label}
                 </span>
-                <span className="text-xs text-[#9A9A9A] mt-1 block font-mono">
-                  {item.detail}
+                <span className="text-xs text-[#9A9A9A] mt-1 block">
+                  {item.description}
                 </span>
               </Link>
             ))}
