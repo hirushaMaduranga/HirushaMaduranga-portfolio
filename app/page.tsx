@@ -8,7 +8,7 @@ import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A0A0A] text-[#F5F5F2]">
+    <div className="min-h-screen flex flex-col bg-[#F5F4F0] text-[#111111]">
       <Navbar />
       <main className="flex-1 flex flex-col">
         <Hero />
