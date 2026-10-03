@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 interface Project {
+  number: string;
   title: string;
   description: string;
   tags: string[];
@@ -9,24 +10,27 @@ interface Project {
 
 const projects: Project[] = [
   {
+    number: "01",
     title: "Project One",
     description:
-      "A placeholder web application showcasing frontend architecture, responsive layouts, and backend API integration.",
+      "A placeholder web application showcasing frontend architecture, responsive layouts, and clean API integration.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS"],
     link: "#",
   },
   {
+    number: "02",
     title: "Project Two",
     description:
-      "A placeholder full stack system featuring server-side rendering, database interactions, and secure authentication flow.",
+      "A placeholder full stack system featuring server-side rendering, database interactions, and authentication flow.",
     tags: ["React", "Node.js", "PostgreSQL"],
     link: "#",
   },
   {
+    number: "03",
     title: "Project Three",
     description:
-      "A placeholder developer tool focused on real-time data processing, API endpoints, and clean user interface components.",
-    tags: ["TypeScript", "REST API", "Database"],
+      "A placeholder web application focused on data management, clean interface components, and API design.",
+    tags: ["TypeScript", "Next.js", "Tailwind CSS"],
     link: "#",
   },
 ];
@@ -48,20 +52,25 @@ export function Projects() {
               Selected Projects
             </h2>
             <p className="text-base text-[#9A9A9A] mt-2">
-              Featured work and technical experiments. More projects will be added soon.
+              Featured work and technical experiments. Real projects and screenshots will be added later.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {projects.map((project) => (
               <article
-                key={project.title}
+                key={project.number}
                 className="border border-[#262626] rounded-lg p-6 sm:p-8 flex flex-col justify-between hover:border-[#9A9A9A]/40 transition-colors bg-[#0A0A0A]"
               >
                 <div>
+                  <span className="text-xs font-mono text-[#9A9A9A] block mb-3">
+                    {project.number}
+                  </span>
+
                   <h3 className="text-xl font-medium text-[#F5F5F2]">
                     {project.title}
                   </h3>
+
                   <p className="text-sm text-[#9A9A9A] mt-3 leading-relaxed">
                     {project.description}
                   </p>
