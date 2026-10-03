@@ -8,21 +8,21 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     period: "Year — Present",
-    role: "Role Title (Placeholder)",
+    role: "Full Stack Developer (Placeholder)",
     company: "Company Name (Placeholder)",
     description:
       "Placeholder description of engineering responsibilities, architectural decisions, and key features delivered across modern web technologies.",
   },
   {
     period: "Year — Year",
-    role: "Role Title (Placeholder)",
+    role: "Frontend Developer (Placeholder)",
     company: "Company Name (Placeholder)",
     description:
       "Placeholder description of UI engineering, component development, user experience improvements, and performance optimizations.",
   },
   {
     period: "Year — Year",
-    role: "Role Title (Placeholder)",
+    role: "Software Engineering Intern (Placeholder)",
     company: "Company Name (Placeholder)",
     description:
       "Placeholder description of foundational engineering tasks, testing, bug fixes, and collaboration with cross-functional development teams.",
@@ -34,45 +34,57 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="w-full py-20 sm:py-28 border-t border-[#262626]"
+      className="w-full py-24 sm:py-36 border-b border-[#111111]/20"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
-        <div className="space-y-10">
-          <div>
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 w-full space-y-16 sm:space-y-20">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#111111]/20">
+          <div className="space-y-3">
+            <p className="font-mono text-xs uppercase tracking-widest text-[#F0442C]">
+              02 &mdash; EXPERIENCE
+            </p>
             <h2
               id="experience-heading"
-              className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F5F5F2]"
+              className="text-3xl sm:text-5xl font-bold tracking-tight text-[#111111]"
             >
-              Experience
+              Work History
             </h2>
-            <p className="text-base text-[#9A9A9A] mt-2">
-              Professional history and engineering background. Real details will be added later.
-            </p>
           </div>
+          <p className="font-mono text-xs uppercase tracking-wider text-[#646464] max-w-sm">
+            Professional background and software development history. Structured placeholder data to be finalized.
+          </p>
+        </div>
 
-          <div className="space-y-6 max-w-4xl">
-            {experiences.map((exp, index) => (
-              <div
-                key={index}
-                className="border border-[#262626] rounded-lg p-6 sm:p-8 bg-[#0A0A0A] space-y-3"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
-                  <div>
-                    <h3 className="text-lg font-medium text-[#F5F5F2]">
-                      {exp.role}
-                    </h3>
-                    <p className="text-sm text-[#9A9A9A]">{exp.company}</p>
-                  </div>
-                  <span className="text-xs font-mono text-[#9A9A9A] uppercase tracking-wider">
-                    {exp.period}
+        {/* Editorial Timeline / List with Thin Horizontal Dividers */}
+        <div className="divide-y divide-[#111111]/20 border-b border-[#111111]/20">
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className="py-10 sm:py-14 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start"
+            >
+              {/* Period in Monospace */}
+              <div className="md:col-span-3">
+                <span className="font-mono text-xs uppercase tracking-widest text-[#646464]">
+                  {exp.period}
+                </span>
+              </div>
+
+              {/* Role, Company, and Description */}
+              <div className="md:col-span-9 space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#111111]">
+                    {exp.role}
+                  </h3>
+                  <span className="font-mono text-xs uppercase tracking-wider text-[#F0442C]">
+                    {exp.company}
                   </span>
                 </div>
-                <p className="text-sm text-[#9A9A9A] leading-relaxed pt-1">
+                <p className="text-base text-[#646464] leading-relaxed max-w-3xl pt-1">
                   {exp.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
